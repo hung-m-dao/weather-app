@@ -7,6 +7,7 @@ target 'WeatherApp' do
   pod 'Alamofire', '~> 5.4'
   pod 'RxSwift', '6.2.0'
   pod 'RxCocoa', '6.2.0'
+  pod 'SDWebImage', '~> 5.0'
   # Pods for WeatherApp
 
   target 'WeatherAppTests' do

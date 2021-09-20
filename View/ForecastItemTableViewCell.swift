@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ForecastItemTableViewCell: UITableViewCell {
     @IBOutlet weak var labelDate: UILabel!
@@ -16,17 +17,18 @@ class ForecastItemTableViewCell: UITableViewCell {
     @IBOutlet weak var ivIcon: UIImageView!
     
     static let identifier = "ForecastItemTableViewCell"
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        ivIcon.image = nil
+    }
+    
     func configureData(with item: ForecastItem) {
-        labelDate.text = getStringFrom(date: item.date)
+        labelDate.text = Utils.getStringFrom(date: item.date)
         labelTemperature.text = String(item.avgTemp)
         labelPressure.text = String(item.pressure)
         labelHumidity.text = String(item.humidity)
         labelDescription.text = String(item.description)
-    }
-    
-    func getStringFrom(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE, dd MMM yyyy"
-        return dateFormatter.string(from: date)
+        ivIcon.sd_setImage(with: Utils.getIconUrl(iconId: item.icon), completed: nil)
     }
 }
