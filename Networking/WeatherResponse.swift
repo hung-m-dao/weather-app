@@ -5,7 +5,7 @@
 //  Created by Hung Dao on 20/09/2021.
 //
 
-struct WeatherResponse: Codable {
+struct WeatherResponse: Decodable {
     var city: City
-    var list: [WeatherItem]
+    var list: [ForecastItem]
 }

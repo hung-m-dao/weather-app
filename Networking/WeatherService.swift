@@ -24,9 +24,9 @@ class WeatherService {
                         observer.onNext(responseObject)
                         observer.onCompleted()
                     }
-                    observer.onError(NSError())
+                    observer.onError(NSError(domain: "", code: 404, userInfo: nil))
                 default:
-                    observer.onError(NSError())
+                    observer.onError(NSError(domain: "", code: 404, userInfo: nil))
                 }
             }
             return Disposables.create {

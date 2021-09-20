@@ -5,7 +5,7 @@
 //  Created by Hung Dao on 20/09/2021.
 //
 
-struct Coordinator: Codable {
+struct Coordinator: Decodable {
     var lon: Float
     var lat: Float
 }
