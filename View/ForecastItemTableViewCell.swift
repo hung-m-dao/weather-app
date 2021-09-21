@@ -24,11 +24,11 @@ class ForecastItemTableViewCell: UITableViewCell {
     }
     
     func configureData(with item: ForecastItem) {
-        labelDate.text = Utils.getStringFrom(date: item.date)
+        labelDate.text = item.getDateString()
         labelTemperature.text = String(item.avgTemp)
         labelPressure.text = String(item.pressure)
         labelHumidity.text = String(item.humidity)
         labelDescription.text = String(item.description)
-        ivIcon.sd_setImage(with: Utils.getIconUrl(iconId: item.icon), completed: nil)
+        ivIcon.sd_setImage(with: item.getIconUrl(), completed: nil)
     }
 }

@@ -24,6 +24,17 @@ struct ForecastItem: Decodable {
         description = response.weather.first?.description ?? ""
         icon = response.weather.first?.icon ?? ""
     }
+    
+    func getDateString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constant.DATE_FORMAT
+        return dateFormatter.string(from: date)
+    }
+    
+    func getIconUrl() -> URL? {
+        let urlString = String(format: Constant.ICON_URL_FORMAT, icon)
+        return URL(string: urlString)
+    }
 }
 
 fileprivate struct RawForecastItem: Decodable {
