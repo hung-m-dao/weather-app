@@ -11,13 +11,18 @@ import RxSwift
 class WeatherForecastViewModel {
     let items = BehaviorRelay<[ForecastItem]>(value: [])
     let errorMessage = PublishSubject<String>()
+    let shouldShowLoadingIndicator = PublishSubject<Bool>()
     let disposeBag = DisposeBag()
     
     func fetchInfo(query: String) {
+        shouldShowLoadingIndicator.onNext(true)
         WeatherService.getWeatherInfo(query: query).subscribe(onNext: { [weak self] response in
             self?.items.accept(response.list)
+            self?.shouldShowLoadingIndicator.onNext(false)
         },
         onError: { [weak self] error in
+            self?.shouldShowLoadingIndicator.onNext(false)
+            self?.items.accept([])
             self?.errorMessage.onNext(error.localizedDescription)
         }).disposed(by: disposeBag)
     }

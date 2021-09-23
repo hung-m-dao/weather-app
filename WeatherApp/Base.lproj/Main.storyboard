@@ -22,6 +22,23 @@
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <sections/>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hn3-P0-89Y">
+                                <rect key="frame" x="0.0" y="95" width="414" height="801"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="YIW-cb-7iu">
+                                        <rect key="frame" x="187" y="380.5" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="TyX-ca-X6q"/>
+                                            <constraint firstAttribute="height" constant="40" id="fXI-bW-a4U"/>
+                                        </constraints>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstItem="YIW-cb-7iu" firstAttribute="centerY" secondItem="Hn3-P0-89Y" secondAttribute="centerY" id="0Ki-K8-90c"/>
+                                    <constraint firstItem="YIW-cb-7iu" firstAttribute="centerX" secondItem="Hn3-P0-89Y" secondAttribute="centerX" id="KG5-am-sR9"/>
+                                </constraints>
+                            </view>
                             <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fIZ-Tm-G6o">
                                 <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -37,10 +54,15 @@
                             <constraint firstItem="fIZ-Tm-G6o" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Rvg-XP-zO4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="isU-8W-LO1" secondAttribute="trailing" id="UtS-EE-5K9"/>
                             <constraint firstItem="fIZ-Tm-G6o" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WbK-Bl-tq0"/>
+                            <constraint firstItem="Hn3-P0-89Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cQ8-4E-I71"/>
                             <constraint firstAttribute="bottom" secondItem="isU-8W-LO1" secondAttribute="bottom" id="eRN-al-Psx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Hn3-P0-89Y" secondAttribute="trailing" id="fcU-zu-vvX"/>
+                            <constraint firstItem="Hn3-P0-89Y" firstAttribute="top" secondItem="fIZ-Tm-G6o" secondAttribute="bottom" id="m6R-uF-i7u"/>
+                            <constraint firstAttribute="bottom" secondItem="Hn3-P0-89Y" secondAttribute="bottom" id="tBg-OE-D5r"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="indicatorView" destination="Hn3-P0-89Y" id="aPk-OK-o1u"/>
                         <outlet property="searchBar" destination="fIZ-Tm-G6o" id="zOV-yi-7Qb"/>
                         <outlet property="tableView" destination="isU-8W-LO1" id="v9u-0l-vFo"/>
                     </connections>

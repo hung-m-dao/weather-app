@@ -11,6 +11,7 @@ import RxSwift
 class WeatherForecastViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     let viewModel = WeatherForecastViewModel()
@@ -19,7 +20,6 @@ class WeatherForecastViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         bindViewModel()
-        //viewModel.fetchInfo(query: "saigon")
     }
     
     func setupTableView() {
@@ -32,6 +32,12 @@ class WeatherForecastViewController: UIViewController {
         viewModel.items.asDriver().drive(tableView.rx.items(cellIdentifier: ForecastItemTableViewCell.identifier, cellType: ForecastItemTableViewCell.self)) { (row, item, cell) in
             cell.configureData(with: item)
         }.disposed(by: disposeBag)
+        
+        viewModel.shouldShowLoadingIndicator
+            .asDriver(onErrorJustReturn: false)
+            .map{ !$0 }
+            .drive(indicatorView.rx.isHidden)
+            .disposed(by: disposeBag)
         
         viewModel.errorMessage
             .observe(on: MainScheduler.instance)
